@@ -3,11 +3,52 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+      arrayvar: [],
+      newText: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState(
+      {
+        value: event.target.value,
+        arrayvar: this.state.arrayvar,
+        newText: this.state.newText
+      }
+    );
+  }
+
+  handleSubmit(event) {
+    let tempArrayvar = this.state.arrayvar.concat([this.state.value]);
+    let tempNewText = tempArrayvar.map((item, i) => {
+      return <p key={i}>{item}<br></br></p>;})
+   this.setState(
+      {
+        value: '',
+        arrayvar: tempArrayvar,
+        newText: tempNewText
+      }
+    )
+    event.preventDefault();
+  }
   render() {
     return (
-      <div className="App">
-        hello world
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            ToDo:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <p>{this.state.newText}</p>;
       </div>
     );
   }
