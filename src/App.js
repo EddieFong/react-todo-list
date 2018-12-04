@@ -16,13 +16,8 @@ class App extends Component {
   }
 
   handleChange(event) {
-    this.setState(
-      {
-        value: event.target.value,
-        arrayvar: this.state.arrayvar,
-        newText: this.state.newText
-      }
-    );
+    this.state.value = event.target.value;
+    this.setState(this.state);
   }
 
   handleSubmit(event) {
@@ -48,7 +43,7 @@ class App extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        {this.state.newText};
+        {this.state.newText}
       </div>
     );
   }
