@@ -28,7 +28,7 @@ class App extends Component {
   handleSubmit(event) {
     let tempArrayvar = this.state.arrayvar.concat([this.state.value]);
     let tempNewText = tempArrayvar.map((item, i) => {
-      return <p key={i}>{item}<br></br></p>;})
+      return <li key={i}>{item}</li>;})
    this.setState(
       {
         value: '',
@@ -48,7 +48,7 @@ class App extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <p>{this.state.newText}</p>;
+        {this.state.newText};
       </div>
     );
   }
